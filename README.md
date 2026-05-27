@@ -1,41 +1,51 @@
-# CLI Automation Testing Prototype
+# CLI Automation Framework using Python and Robot Framework
 
-This project demonstrates CLI automation testing using Python scripting and Robot Framework.
+## Overview
 
-## Tech Stack
+This project demonstrates  CLI workflow automation using Python and Robot Framework.
+
+The framework automates Git CLI operations for a simulated hotfix workflow and includes:
+
+- Git CLI automation
+- Hotfix branch workflow automation
+- Cherry-pick workflow handling
+- Async workflow simulation
+- wait handling
+- Command validation
+- PASS/FAIL execution handling
+- Robot Framework orchestration
+- Report generation
+
+The project simulates how enterprise systems automate long-running workflows such as hotfix deployments, release operations, and CI/CD execution flows.
+
+---
+
+# Technologies Used
+
 - Python
 - Robot Framework
 - Git CLI
 
-## Project Structure
+---
 
+# Project Structure
+
+```text
 cli-automation/
 │
 ├── scripts/
 │   └── automation.py
 │
-└── tests/
-    └── cli_test.robot
+├── tests/
+│   └── cli_test.robot
+│
+├── app.txt
+│
+├── README.md
+│
+├── output.xml
+├── report.html
+└── log.html
 
-## Workflow
 
-Robot Framework
-↓
-Executes Python automation script
-↓
-Python script runs CLI commands
-↓
-Robot Framework validates execution
-↓
-Execution reports generated
-
-## Prerequisites
-- Python installed
-- Robot Framework installed
-- Git installed
-
-## Run Command
-
-```bash
-robot tests/cli_test.robot
-```
+Project workflow successfully tested with Robot Framework orchestration and async workflow simulation.
