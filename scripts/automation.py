@@ -3,7 +3,7 @@ import time
 import sys
 
 # Replace with your actual commit id
-COMMIT_ID = "dcc9f74"
+COMMIT_ID = " "
 
 print("\n=== HOTFIX WORKFLOW STARTED ===\n")
 
