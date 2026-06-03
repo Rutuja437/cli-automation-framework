@@ -68,6 +68,11 @@ The generated automation should validate:
 * Build artifact generation
 * Test execution success
 * Failure reporting
+* Expected output content validation
+* Generated artifact validation
+* Workflow completion validation
+*Timeout detection
+*Skipped workflow reporting
 
 ---
 
@@ -113,17 +118,40 @@ The agent should inspect project configuration and workflow files related to:
 
 Create a Python script using `subprocess.run()` to execute CLI commands sequentially with proper error handling.
 
+The generated script should:
+
+Execute dependent workflows sequentially
+Capture stdout, stderr, and exit codes
+Generate failure reports
+Skip unsafe commands automatically
+
 ---
 
 ## Step 3 — async_automation.py (Async + Polling)
 
 Create an asynchronous version using `asyncio` for parallel execution and polling support for long-running tasks.
 
+The asynchronous implementation must:
+
+Execute independent workflows in parallel using asyncio.gather()
+Support polling for long-running processes
+Use process.wait() or equivalent mechanisms to detect completion
+Support configurable timeouts
+Capture stdout, stderr, and exit codes
+Report timeout failures clearly
+
 ---
 
 ## Step 4 — cli_test.robot
 
-Create a Robot Framework test file that validates both automation scripts and basic commands.
+Create a Robot Framework test file that validates :
+
+* Generated automation scripts
+* CLI workflow execution
+* Exit codes
+* Expected output content
+* Generated artifacts
+* Failure handling behavior
 
 ---
 
@@ -172,6 +200,19 @@ git stash drop
 ```
 
 **Rule**: Read-only commands can run directly. Write/Delete commands need human approval first.
+
+---
+Unsafe Command Handling
+
+The agent must:
+
+1.Detect unsafe commands before execution.
+2.Prevent execution of unsafe commands by default.
+3.Generate a clear report listing skipped unsafe commands.
+4.Require explicit human approval before executing any unsafe command.
+5.Record the reason for skipping each unsafe command.
+
+Unsafe commands must never execute automatically.
 
 ---
 
