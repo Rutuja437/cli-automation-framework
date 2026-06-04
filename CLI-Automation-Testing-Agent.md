@@ -19,7 +19,7 @@ When executed, the agent should:
 3. Generate synchronous and asynchronous Python automation scripts
 4. Generate Robot Framework validation tests
 5. Execute and validate safe CLI operations
-6. Prevent unsafe command execution without human approval
+6. Block unsafe commands and report them clearly — never execute without human approval
 
 The final result should be a runnable automation suite capable of validating project workflows.
 
@@ -92,7 +92,9 @@ project/
 
 ## Required Libraries
 
-**Python**: `subprocess`, `asyncio`, `sys`
+**Python**: `subprocess`, `asyncio`, `sys`, os, typing, datetime
+Use from typing import Dict, List for Python 3.7+ compatibility.
+Do not use built-in list[str] / dict[str, str] generics — they require Python 3.9+.
 **Robot Framework**: `Process` Library
 **Installation**:
 
@@ -106,7 +108,7 @@ pip install robotframework
 
 The agent should inspect project configuration and workflow files related to:
 
-* frontend applications
+* frontend applications 
 * backend services
 * containerized environments
 * CI/CD pipelines
@@ -146,12 +148,15 @@ Report timeout failures clearly
 
 Create a Robot Framework test file that validates :
 
-* Generated automation scripts
-* CLI workflow execution
-* Exit codes
-* Expected output content
-* Generated artifacts
+* Generated automation scripts exist
+* Safe CLI commands execute and return exit code 0
+* Expected output content appears in stdout
+* Unsafe commands are absent from execution (never run)
+* Generated log files are created after a run
+* Timeout behaviour is reported correctly
 * Failure handling behavior
+
+Use the Process library. Keep test cases focused and independently runnable.
 
 ---
 
