@@ -1,75 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.12.3 on win32)" generated="2026-05-22T13:11:59.347517" rpa="false" schemaversion="5">
-<suite id="s1" name="Cli Test" source="c:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\tests\cli_test.robot">
-<test id="s1-t1" name="Run CLI Automation" line="5">
-<kw name="Run Process" owner="Process">
-<msg time="2026-05-22T13:11:59.384778" level="INFO">Starting process:
-python scripts/automation.py</msg>
-<msg time="2026-05-22T13:11:59.406394" level="INFO">Waiting for process to complete.</msg>
-<msg time="2026-05-22T13:11:59.658680" level="INFO">Process completed.</msg>
-<msg time="2026-05-22T13:11:59.658680" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
-<var>${result}</var>
-<arg>python scripts/automation.py</arg>
-<arg>shell=True</arg>
-<doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2026-05-22T13:11:59.384778" elapsed="0.273902"/>
+<robot generator="Robot 7.3.2 (Python 3.12.3 on win32)" generated="2026-06-10T16:18:25.096116" rpa="false" schemaversion="5">
+<suite id="s1" name="Validate Hotfix" source="c:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\tests\validate_hotfix.robot">
+<test id="s1-t1" name="Validate Hotfix Workflow" line="8">
+<kw name="File Should Exist" owner="OperatingSystem">
+<msg time="2026-06-10T16:18:25.138625" level="INFO" html="true">File '&lt;a href="file://C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_001.log"&gt;C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_001.log&lt;/a&gt;' exists.</msg>
+<arg>${LOG_FILE}</arg>
+<doc>Fails unless the given ``path`` points to an existing file.</doc>
+<status status="PASS" start="2026-06-10T16:18:25.137628" elapsed="0.006000"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2026-05-22T13:11:59.665883" level="INFO">
-Running command: git --version
-STDOUT:
-git version 2.46.0.windows.1
+<kw name="Get File" owner="OperatingSystem">
+<msg time="2026-06-10T16:18:25.145626" level="INFO" html="true">Getting file '&lt;a href="file://C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_001.log"&gt;C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_001.log&lt;/a&gt;'.</msg>
+<msg time="2026-06-10T16:18:25.154499" level="INFO">${content} = HOTFIX_CREATED
+ISSUE_ID: BUG-101
 
-STDERR:
+CODE_COMMITTED
+COMMIT_ID: abc123
 
-RETURN CODE:
-0
+PR_OPENED
+PR_ID: 501
 
-Running command: git status
-STDOUT:
-On branch master
+PR_MERGED
+PR_ID: 501
 
-No commits yet
-
-Untracked files:
-  (use "git add &lt;file&gt;..." to include in what will be committed)
-	README.md
-	log.html
-	output.xml
-	report.html
-	scripts/
-	tests/
-
-nothing added to commit but untracked files present (use "git add" to track)
-
-STDERR:
-
-RETURN CODE:
-0
-
-All commands executed successfully!</msg>
-<arg>${result.stdout}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-05-22T13:11:59.663767" elapsed="0.002116"/>
+RELEASE_CREATED
+VERSION: 1.0.1</msg>
+<var>${content}</var>
+<arg>${LOG_FILE}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<status status="PASS" start="2026-06-10T16:18:25.144625" elapsed="0.010878"/>
 </kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2026-05-22T13:11:59.668798" level="INFO"/>
-<arg>${result.stderr}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2026-05-22T13:11:59.665883" elapsed="0.002915"/>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${content}</arg>
+<arg>HOTFIX_CREATED</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-10T16:18:25.157501" elapsed="0.000000"/>
 </kw>
-<kw name="Should Be Equal As Integers" owner="BuiltIn">
-<msg time="2026-05-22T13:11:59.668798" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<arg>${result.rc}</arg>
-<arg>0</arg>
-<doc>Fails if objects are unequal after converting them to integers.</doc>
-<status status="PASS" start="2026-05-22T13:11:59.668798" elapsed="0.000000"/>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${content}</arg>
+<arg>CODE_COMMITTED</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-10T16:18:25.157501" elapsed="0.001000"/>
 </kw>
-<status status="PASS" start="2026-05-22T13:11:59.384778" elapsed="0.284020"/>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${content}</arg>
+<arg>PR_OPENED</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-10T16:18:25.159501" elapsed="0.000803"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${content}</arg>
+<arg>PR_MERGED</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-10T16:18:25.160304" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${content}</arg>
+<arg>RELEASE_CREATED</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-10T16:18:25.163665" elapsed="0.001540"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<arg>${content}</arg>
+<arg>ERROR</arg>
+<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-10T16:18:25.166237" elapsed="0.000976"/>
+</kw>
+<status status="PASS" start="2026-06-10T16:18:25.135727" elapsed="0.034486"/>
 </test>
-<status status="PASS" start="2026-05-22T13:11:59.352478" elapsed="0.322300"/>
+<status status="PASS" start="2026-06-10T16:18:25.102629" elapsed="0.071568"/>
 </suite>
 <statistics>
 <total>
@@ -78,7 +76,7 @@ All commands executed successfully!</msg>
 <tag>
 </tag>
 <suite>
-<stat name="Cli Test" id="s1" pass="1" fail="0" skip="0">Cli Test</stat>
+<stat name="Validate Hotfix" id="s1" pass="1" fail="0" skip="0">Validate Hotfix</stat>
 </suite>
 </statistics>
 <errors>
