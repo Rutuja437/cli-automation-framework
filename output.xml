@@ -1,73 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.12.3 on win32)" generated="2026-06-10T16:18:25.096116" rpa="false" schemaversion="5">
-<suite id="s1" name="Validate Hotfix" source="c:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\tests\validate_hotfix.robot">
-<test id="s1-t1" name="Validate Hotfix Workflow" line="8">
-<kw name="File Should Exist" owner="OperatingSystem">
-<msg time="2026-06-10T16:18:25.138625" level="INFO" html="true">File '&lt;a href="file://C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_001.log"&gt;C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_001.log&lt;/a&gt;' exists.</msg>
-<arg>${LOG_FILE}</arg>
-<doc>Fails unless the given ``path`` points to an existing file.</doc>
-<status status="PASS" start="2026-06-10T16:18:25.137628" elapsed="0.006000"/>
+<robot generator="Robot 7.3.2 (Python 3.12.3 on win32)" generated="2026-06-11T16:51:52.063981" rpa="false" schemaversion="5">
+<suite id="s1" name="Hotfix Log Validation" source="c:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\tests\hotfix_log_validation.robot">
+<test id="s1-t1" name="Validate Latest Hotfix Log" line="8">
+<kw name="List Files In Directory" owner="OperatingSystem">
+<msg time="2026-06-11T16:51:52.199295" level="INFO" html="true">Listing contents of directory '&lt;a href="file://C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs"&gt;C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs&lt;/a&gt;'.</msg>
+<msg time="2026-06-11T16:51:52.205978" level="INFO">3 files:
+VALIDATION_SETUP.md
+hotfix_001.log
+hotfix_20260611_164953.log</msg>
+<msg time="2026-06-11T16:51:52.205978" level="INFO">${files} = ['VALIDATION_SETUP.md', 'hotfix_001.log', 'hotfix_20260611_164953.log']</msg>
+<var>${files}</var>
+<arg>${LOG_DIR}</arg>
+<doc>Wrapper for `List Directory` that returns only files.</doc>
+<status status="PASS" start="2026-06-11T16:51:52.198287" elapsed="0.007691"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-11T16:51:52.308286" level="INFO">${latest} = hotfix_20260611_164953.log</msg>
+<var>${latest}</var>
+<arg>${files}[-1]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-11T16:51:52.308286" elapsed="0.000000"/>
 </kw>
 <kw name="Get File" owner="OperatingSystem">
-<msg time="2026-06-10T16:18:25.145626" level="INFO" html="true">Getting file '&lt;a href="file://C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_001.log"&gt;C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_001.log&lt;/a&gt;'.</msg>
-<msg time="2026-06-10T16:18:25.154499" level="INFO">${content} = HOTFIX_CREATED
-ISSUE_ID: BUG-101
-
-CODE_COMMITTED
-COMMIT_ID: abc123
-
-PR_OPENED
-PR_ID: 501
-
-PR_MERGED
-PR_ID: 501
-
-RELEASE_CREATED
-VERSION: 1.0.1</msg>
+<msg time="2026-06-11T16:51:52.597400" level="INFO" html="true">Getting file '&lt;a href="file://C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_20260611_164953.log"&gt;C:\Users\RUTUJA DESHPANDE\Desktop\cli-automation\logs\hotfix_20260611_164953.log&lt;/a&gt;'.</msg>
+<msg time="2026-06-11T16:51:52.615224" level="INFO">${content} = 2026-06-11 16:49:53.249329 | HOTFIX_CREATED
+2026-06-11 16:49:53.249329 | CODE_COMMITTED
+2026-06-11 16:49:53.249329 | PR_OPENED
+2026-06-11 16:49:53.249329 | PR_MERGED
+2026-06-11 16:49:53.249329 | RELEA...</msg>
 <var>${content}</var>
-<arg>${LOG_FILE}</arg>
+<arg>${LOG_DIR}/${latest}</arg>
 <doc>Returns the contents of a specified file.</doc>
-<status status="PASS" start="2026-06-10T16:18:25.144625" elapsed="0.010878"/>
+<status status="PASS" start="2026-06-11T16:51:52.597400" elapsed="0.019841"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${content}</arg>
 <arg>HOTFIX_CREATED</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-10T16:18:25.157501" elapsed="0.000000"/>
+<status status="PASS" start="2026-06-11T16:51:52.622824" elapsed="0.000000"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${content}</arg>
 <arg>CODE_COMMITTED</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-10T16:18:25.157501" elapsed="0.001000"/>
+<status status="PASS" start="2026-06-11T16:51:52.690286" elapsed="0.000000"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${content}</arg>
 <arg>PR_OPENED</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-10T16:18:25.159501" elapsed="0.000803"/>
+<status status="PASS" start="2026-06-11T16:51:52.750451" elapsed="0.000000"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${content}</arg>
 <arg>PR_MERGED</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-10T16:18:25.160304" elapsed="0.000000"/>
+<status status="PASS" start="2026-06-11T16:51:52.806627" elapsed="0.001982"/>
 </kw>
 <kw name="Should Contain" owner="BuiltIn">
 <arg>${content}</arg>
 <arg>RELEASE_CREATED</arg>
 <doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-10T16:18:25.163665" elapsed="0.001540"/>
+<status status="PASS" start="2026-06-11T16:51:52.870381" elapsed="0.000000"/>
 </kw>
-<kw name="Should Not Contain" owner="BuiltIn">
-<arg>${content}</arg>
-<arg>ERROR</arg>
-<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
-<status status="PASS" start="2026-06-10T16:18:25.166237" elapsed="0.000976"/>
-</kw>
-<status status="PASS" start="2026-06-10T16:18:25.135727" elapsed="0.034486"/>
+<status status="PASS" start="2026-06-11T16:51:52.181150" elapsed="0.731757"/>
 </test>
-<status status="PASS" start="2026-06-10T16:18:25.102629" elapsed="0.071568"/>
+<status status="PASS" start="2026-06-11T16:51:52.074016" elapsed="0.973107"/>
 </suite>
 <statistics>
 <total>
@@ -76,7 +74,7 @@ VERSION: 1.0.1</msg>
 <tag>
 </tag>
 <suite>
-<stat name="Validate Hotfix" id="s1" pass="1" fail="0" skip="0">Validate Hotfix</stat>
+<stat name="Hotfix Log Validation" id="s1" pass="1" fail="0" skip="0">Hotfix Log Validation</stat>
 </suite>
 </statistics>
 <errors>
