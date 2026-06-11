@@ -72,7 +72,18 @@ The log validation workflow verifies:
 * Overall workflow completion status
 
 ---
+## Adding New Validation Rules
 
+New validations can be added in the Robot Framework test file.
+
+Example validations:
+
+Verify specific workflow events
+Verify execution status
+Verify error conditions
+Verify mandatory log entries
+
+---
 ## Objective
 
 Evaluate Robot Framework's capability to analyze and validate workflow/execution logs and generate automated PASS/FAIL results based on predefined validation rules.
